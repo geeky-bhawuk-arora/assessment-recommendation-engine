@@ -34,7 +34,7 @@ def scrape_shl_catalog():
     with open("data/assessments.json", "w", encoding="utf-8") as f:
         json.dump(assessments, f, indent=2, ensure_ascii=False)
 
-    print(f"✅ Extracted {len(assessments)} assessments")
+    print(f"Extracted {len(assessments)} assessments")
 
 if __name__ == "__main__":
     scrape_shl_catalog()
