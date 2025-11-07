@@ -1,0 +1,5 @@
+flask
+sentence-transformers
+torch
+requests
+beautifulsoup4
