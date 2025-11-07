@@ -3,3 +3,5 @@ sentence-transformers
 torch
 requests
 beautifulsoup4
+google-genai  # ADDED: For accessing the Gemini API
+pydantic      # ADDED: For defining structured data extraction schema

@@ -15,6 +15,7 @@ def recommend_assessments(input_text, top_n=10):
 
     scores = []
     for a in assessments:
+        # Use name and description for embedding calculation
         text = f"{a['name']} {a.get('description', '')}"
         emb = model.encode(text, convert_to_tensor=True)
         score = float(util.cos_sim(input_emb, emb))
@@ -22,10 +23,18 @@ def recommend_assessments(input_text, top_n=10):
 
     scores.sort(key=lambda x: x[1], reverse=True)
     top = scores[:top_n]
+    
+    # --- MODIFICATION: Including all required fields in the final result ---
     return [
         {
             "name": a["name"],
             "url": a["url"],
-            "score": round(s, 3)
+            "score": round(s, 3), # Score remains for relevance tracking
+            "adaptive_support": a.get("adaptive_support", "N/A"),
+            "description": a.get("description", ""),
+            "duration": a.get("duration", 0),
+            "remote_support": a.get("remote_support", "N/A"),
+            "test_type": a.get("test_type", [])
         } for a, s in top
     ]
+    # ----------------------------------------------------------------------
